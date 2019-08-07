@@ -1,16 +1,16 @@
 <?php
 /**
- * Concierge Translations 
+ * Concierge Translations
  *
  * @author    Olivier Bon
  * @package   Concierge
- * @since     2.1.0
+ * @since     2.1.2
  *
  */
 return [
     // Concierge UI
     // =========================================================================
-    
+
     /* Listing Page */
     'Awaiting activation' => 'En attente d\'activation',
     'Concierge Settings' => 'Paramètres de Concierge',
