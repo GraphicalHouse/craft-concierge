@@ -1,6 +1,6 @@
 {
     "name": "graphicalhouse/craft-concierge",
-    "description": "Simple user moderation plugin for Craft",
+    "description": "Simple user moderation plugin for Craft (Graphical House fork)",
     "type": "craft-plugin",
     "version": "2.1.1",
     "keywords": [
