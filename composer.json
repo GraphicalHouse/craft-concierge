@@ -1,5 +1,5 @@
 {
-    "name": "olivierbon/craft-concierge",
+    "name": "graphicalhouse/craft-concierge",
     "description": "Simple user moderation plugin for Craft",
     "type": "craft-plugin",
     "version": "2.1.1",
