@@ -1,6 +1,6 @@
 <?php
 /**
- * Concierge Translations 
+ * Concierge Translations
  *
  * @author    Olivier Bon
  * @package   Concierge
@@ -10,7 +10,7 @@
 return [
     // Concierge UI
     // =========================================================================
-    
+
     /* Listing Page */
     'Awaiting activation' => 'Awaiting activation',
     'Concierge Settings' => 'Concierge Settings',
@@ -39,11 +39,15 @@ return [
     'concierge_moderation_subject' => 'Your registration was successful',
     'concierge_moderation_body' => "Hey {{user.friendlyName}},\n\n" .
     "Thanks for creating an account with {{siteName}}! Your registration was successful. An administrator will activate your account soon and a confirmation email will be sent to you.\n\n",
-    /* User Actived to user */
-    'concierge_activated_heading' => 'Concierge - Account Activated message (to user only):',
+    /* User Actived to Contract user */
+    'concierge_activated_heading' => 'Concierge - Account Activated message (to Contract user only):',
     'concierge_activated_subject' => 'Your account has been activated',
     'concierge_activated_body' => "Hey {{user.friendlyName}},\n\n" .
     "Thanks again for creating an account with {{siteName}}! Your account has been activated and is now ready for use. \n\n",
+    /* User Actived to Normal user */
+    'concierge_activated_heading_normal' => 'Concierge - Account Activated message (to Normal user only):',
+    'concierge_activated_subject_normal' => 'Your account has been activated',
+    'concierge_activated_body_normal' => "You did not get a contract account. We have activated a normal account instead. Sorry. \n\n",
     /* User registration email to admin/moderator */
     'concierge_mod_notification_heading' => 'Concierge - Notification of new regitration (to mods/admin only):',
     'concierge_mod_notification_subject' => 'New registration on {{siteName}}',

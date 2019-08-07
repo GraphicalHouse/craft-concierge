@@ -121,6 +121,13 @@ class Concierge extends \craft\base\Plugin
                 ];
 
                 $event->messages[] = [
+                    'key' => 'concierge_activated_normal',
+                    'heading' => Craft::t('concierge', 'concierge_activated_heading_normal'),
+                    'subject' => Craft::t('concierge', 'concierge_activated_subject_normal'),
+                    'body' => Craft::t('concierge', 'concierge_activated_body_normal')
+                ];
+
+                $event->messages[] = [
                     'key' => 'concierge_mod_notification',
                     'heading' => Craft::t('concierge', 'concierge_mod_notification_heading'),
                     'subject' => Craft::t('concierge', 'concierge_mod_notification_subject'),
@@ -183,8 +190,11 @@ class Concierge extends \craft\base\Plugin
             Users::EVENT_AFTER_UNSUSPEND_USER,
             function(Event $event) {
                 if ($this->settings->concierge_activated_enabled) {
-                  if $user->getIdentity()->isInGroup('customerContract')) {
+                  if ($event->user->isInGroup('customerContract')) {
                     Concierge::getInstance()->mailer->sendUserUnsuspendedEmail($event->user);
+                  }
+                  if ($event->user->isInGroup('customerNormal')) {
+                    Concierge::getInstance()->mailer->sendUserUnsuspendedNormalEmail($event->user);
                   }
                 }
             }

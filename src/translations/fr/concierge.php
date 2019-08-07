@@ -4,7 +4,7 @@
  *
  * @author    Olivier Bon
  * @package   Concierge
- * @since     2.1.2
+ * @since     2.1.0
  *
  */
 return [
@@ -44,6 +44,7 @@ return [
     'concierge_activated_subject' => 'Votre compte a été activé!',
     'concierge_activated_body' => "Bonjour {{user.friendlyName}},\n\n" .
     "Une fois de plus, merci de nous joindre sur {{siteName}}! Votre compte a été activé et est prêt à l'emploi. \n\n Visitez {{siteUrl}} pour vous connecter. \n\n À bientôt! ",
+    'concierge_activated_body_normal' => "Bof! ",
     /* User registration email to admin/moderator */
     'concierge_mod_notification_heading' => 'Concierge - Message: "Notification de nouvel utilisateur" (à l\'admin/moderateur) :',
     'concierge_mod_notification_subject' => 'Nouvelle régistration sur {{siteName}}',

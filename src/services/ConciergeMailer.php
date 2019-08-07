@@ -8,7 +8,7 @@ use yii\base\Component;
 use yii\base\Model;
 
 /**
- * ConciergeMailer Class 
+ * ConciergeMailer Class
  *
  * @author    Olivier Bon
  * @package   Concierge
@@ -36,12 +36,18 @@ class ConciergeMailer extends Component
         return true;
     }
 
+    public function sendUserUnsuspendedNormalEmail(User $user)
+    {
+        self::send($user,'concierge_activated_normal');
+        return true;
+    }
+
     public function sendNewUserRegistrationEmail()
     {
         $emailSettings = Craft::$app->systemSettings->getSettings('email');
         $user = new User();
         $user->email = ($this->settings->moderatorEmail) ? $this->settings->moderatorEmail : $emailSettings['fromEmail'];
-        
+
         self::send($user,'concierge_mod_notification');
     }
 
