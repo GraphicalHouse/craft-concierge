@@ -16,7 +16,7 @@ use olivierbon\concierge\models\Settings;
 use yii\base\Event;
 
 /**
- * Concierge Class 
+ * Concierge Class
  *
  * @author    Olivier Bon
  * @package   Concierge
@@ -103,8 +103,8 @@ class Concierge extends \craft\base\Plugin
     protected static function registerConciergeMessages()
     {
         Event::on(
-            SystemMessages::class, 
-            SystemMessages::EVENT_REGISTER_MESSAGES, 
+            SystemMessages::class,
+            SystemMessages::EVENT_REGISTER_MESSAGES,
             function(RegisterEmailMessagesEvent $event) {
                 $event->messages[] = [
                     'key' => 'concierge_moderation',
@@ -150,14 +150,14 @@ class Concierge extends \craft\base\Plugin
     protected function newUserElementIsSaved()
     {
         Event::on(
-            Elements::class, 
+            Elements::class,
             Elements::EVENT_AFTER_SAVE_ELEMENT,
             function(Event $event) {
                 if ($event->element instanceof \craft\elements\User) {
                     $user = $event->element;
                     $isNew = $event->isNew;
 
-                    // If it's a new user, suspend the user and issue enabled messages 
+                    // If it's a new user, suspend the user and issue enabled messages
                     if($isNew) {
                         Craft::$app->users->suspendUser($user);
                         if ($this->settings->concierge_moderation_enabled) {
@@ -174,7 +174,7 @@ class Concierge extends \craft\base\Plugin
     }
 
     /**
-     * Listens for a user to be unsuspended and issue messages if enabled  
+     * Listens for a user to be unsuspended and issue messages if enabled
      */
     protected function userIsUnsuspended()
     {
@@ -183,9 +183,11 @@ class Concierge extends \craft\base\Plugin
             Users::EVENT_AFTER_UNSUSPEND_USER,
             function(Event $event) {
                 if ($this->settings->concierge_activated_enabled) {
+                  if $user->getIdentity()->isInGroup('customerContract')) {
                     Concierge::getInstance()->mailer->sendUserUnsuspendedEmail($event->user);
+                  }
                 }
             }
-        ); 
+        );
     }
 }
