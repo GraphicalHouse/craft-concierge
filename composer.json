@@ -1,8 +1,8 @@
 {
     "name": "olivierbon/craft-concierge",
-    "description": "Simple user moderation plugin for Craft",
+    "description": "Simple user moderation plugin for Craft (forked by Graphical House)",
     "type": "craft-plugin",
-    "version": "2.1.0",
+    "version": "2.1.2",
     "keywords": [
         "craft",
         "cms",
