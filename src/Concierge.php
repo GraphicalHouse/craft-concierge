@@ -8,6 +8,13 @@ use craft\events\RegisterComponentTypesEvent;
 use craft\events\RegisterEmailMessagesEvent;
 use craft\services\Dashboard;
 use craft\services\Elements;
+use craft\events\ElementEvent;
+use craft\base\ElementAction;
+use craft\base\ElementActionInterface;
+use craft\base\ElementInterface;
+use craft\events\ElementActionEvent;
+use craft\helpers\ArrayHelper;
+use craft\helpers\ElementHelper;
 use craft\services\Plugins;
 use craft\services\SystemMessages;
 use craft\services\Users;
@@ -70,6 +77,9 @@ class Concierge extends \craft\base\Plugin
 
         // Listens for EVENT_AFTER_UNSUSPEND_USER
         self::userIsUnsuspended();
+
+        // NEW: Listens for EVENT_BEFORE_SAVE_ELEMENT
+        self::beforeNewUserElementIsSaved();
     }
 
     // Protected Methods
@@ -174,6 +184,33 @@ class Concierge extends \craft\base\Plugin
                         if($this->settings->concierge_mod_notification_enabled) {
                             Concierge::getInstance()->mailer->sendNewUserRegistrationEmail();
                         }
+                    }
+                }
+            }
+        );
+    }
+
+    /**
+     * Listens for a new element to be saved then checks it's an instance of \craft\elements\User
+     */
+    protected function beforeNewUserElementIsSaved()
+    {
+        Event::on(
+            Elements::class,
+            Elements::EVENT_BEFORE_SAVE_ELEMENT,
+            function(Event $event) {
+                if ($event->element instanceof \craft\elements\User) {
+                    $user = $event->element;
+                    $email    = $user->email;
+                    $isNew = $event->isNew;
+
+                    // If it's a new user, check their email domain is not blacklisted
+                    if($isNew) {
+                      if (strpos($email, 'qq.com') !== false) {
+                        // Cancel the user creation
+                        // TODO: fix this so it doesn't just throw an error
+                        $event->isValid = false;
+                      }
                     }
                 }
             }
