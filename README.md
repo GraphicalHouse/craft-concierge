@@ -25,7 +25,7 @@ Please visit the [Concierge Website](https://concierge.olivierbon.com)
 
 To ensure that our fork of the Craft Concierge plugin is loaded (from our Github repo not theirs), the following is required in the main `composer.json` file for the Craft project:
 
-1. `minimum-stability": "dev"` (So that dev releases are accepted)
+1. `minimum-stability": "dev"` (2020 update: NOT REQUIRED!)
 2. `"olivierbon/craft-concierge/craft-concierge": "dev-master"` (The second half tells composer to load the "master" branch from Github)
 3. A `"repositories"` line that points to `"GraphicalHouse/craft-concierge"`
 
@@ -33,7 +33,6 @@ So, with all of these in place:
 
 ```
 {
-  "minimum-stability": "dev",
   "require": {
     "aelvan/imager": "v2.1.10",
     "craftcms/cms": "3.2.9",
