@@ -202,11 +202,12 @@ class Concierge extends \craft\base\Plugin
                 if ($event->element instanceof \craft\elements\User) {
                     $user = $event->element;
                     $email    = $user->email;
+                    $company = $user->getFieldValue('company');
                     $isNew = $event->isNew;
 
                     // If it's a new user, check their email domain is not blacklisted
                     if($isNew) {
-                      if (strpos($email, 'qq.com') !== false) {
+                      if (($company == '') or (strpos($email, 'qq.com') !== false)) {
                         // Cancel the user creation
                         // TODO: fix this so it doesn't just throw an error
                         $event->isValid = false;
